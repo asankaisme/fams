@@ -14,15 +14,10 @@ class FixedAssetController extends Controller
         return view('fam.index', compact('fas'));
     }
 
-    public function testing()
-    {
-        return view('fam.testing');
-    }
-
-    public function getFixedAsset($id)
+    public function getFixedAsset(FixedAsset $fa)
     {
         // dd($id);
-        return response()->json(FixedAsset::find($id));
+        return view('fam.fa', compact('fa'));
     }
 
     public function updateFixedAsset(Request $request, $id)
@@ -36,10 +31,12 @@ class FixedAssetController extends Controller
             if($faName)
             {
                 $faName->status = $request->status;
+                $faName->remarks = $request->remarks;
                 $faName->save();
-                return response()->json(['message' => 'Fixed asset status is updated.']);
+                // return response()->json(['message' => 'Fixed asset status is updated.']);
+                return redirect()->route('faindex')->with('msgSuccess', 'Asset status updated.');
             }else{
-                return response()->json(['message' => 'Asset not found!']);
+                return redirect()->route('faindex')->with('msgError', 'Asset status update failed!.');
             }
         } catch (\Throwable $th) {
             throw $th;

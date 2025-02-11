@@ -12,7 +12,7 @@ Route::get('/uploadExcelFile', [UploadFilesController::class, 'updloadExcelFile'
 Route::post('/uploadExcelFile', [UploadFilesController::class, 'updloadExcelFilePost'])->name('updloadExcelFilePost');
 
 Route::get('/', [FixedAssetController::class, 'index'])->name('faindex');
-Route::get('/get-fixed-asset/{id}', [FixedAssetController::class, 'getFixedAsset'])->name('getFixedAsset');
+Route::get('/get-fixed-asset/{fa}', [FixedAssetController::class, 'getFixedAsset'])->name('getFixedAsset');
 Route::post('/update-fixed-asset/{id}',[FixedAssetController::class,'updateFixedAsset'])->name('updateFixedAsset');
 
 Route::get('/testing', [FixedAssetController::class, 'testing'])->name('testing');
